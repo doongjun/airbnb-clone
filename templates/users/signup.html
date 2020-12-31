@@ -13,14 +13,37 @@
         
     {% include 'partial/social_login.html' %}
 
-        <form method="POST" action="{% url 'users:signup' %}" class="w-full">
+        <form method="POST" action="{% url 'users:signup' %}">
             {% csrf_token %}
             {{form.first_name}}
             {{form.last_name}}
-            <input type="email" placeholder="email" class="text-left rounded-sm py-5 font-medium text-lg w-full border border-gray-600 px-5 focus:outline-none focus:border-teal-500 mb-3">
-            <input type="password" placeholder="password" class="text-left rounded-sm py-5 font-medium text-lg w-full border border-gray-600 px-5 focus:outline-none focus:border-teal-500 mb-3">
-            <input type="password" placeholder="Confirm password" class="text-left rounded-sm py-5 font-medium text-lg w-full border border-gray-600 px-5 focus:outline-none focus:border-teal-500 mb-3">
-            <button class="text-center rounded-sm py-5 font-bold text-lg w-full bg-red-500 text-white">Login</button>
+            {{form.email}}
+
+
+            {% if form.errors %}
+
+                {% for e in form.errors %}
+                    {{e}}
+                {% endfor %}
+
+            {% endif %}
+
+
+            {% if form.email.errors %}
+
+                {% for e in form.email.errors %}
+                    {{e}}
+                {% endfor %}
+
+            {% endif %}
+
+            {{form.password}}
+            {{form.password1}}
+            <button class="btn bg-red-500 text-white">Login</button>
         </form>
+        <div class="mt-5">
+            <span class="mr-2">Have an account?</span>
+            <a href="{% url 'users:login' %}" class="text-teal-500 font-medium">Log in</a>
+        </div>
     </div>
 {% endblock content %}
