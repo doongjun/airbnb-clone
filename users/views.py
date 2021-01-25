@@ -211,7 +211,6 @@ class UpdateProfileView(UpdateView):
         "first_name",
         "last_name",
         "gender",
-        "bio",
         "birthdate",
         "language",
         "currency",
